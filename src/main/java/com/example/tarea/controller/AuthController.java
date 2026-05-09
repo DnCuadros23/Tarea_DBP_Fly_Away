@@ -7,14 +7,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController("/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
     private final AuthService authService;
 
     // POST /auth/login (sin protección)
-    @PostMapping("/auth/login")
+    @PostMapping("/login")
     public ResponseEntity<LoginResponseDto> login(@Valid @RequestBody LoginRequestDto dto) {
         return ResponseEntity.ok(authService.login(dto));
     }

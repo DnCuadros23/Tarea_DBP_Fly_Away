@@ -9,14 +9,14 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController("/flights")
 @RequiredArgsConstructor
 public class BookingController {
 
     private final BookingService bookingService;
 
     // POST /flights/book (protegido)
-    @PostMapping("/flights/book")
+    @PostMapping("/book")
     public ResponseEntity<BookingResponseDto> bookFlight(
             @Valid @RequestBody BookingRequestDto dto,
             @AuthenticationPrincipal UserDetails userDetails) {
@@ -26,7 +26,7 @@ public class BookingController {
     }
 
     // GET /flight/book/{id} (protegido)
-    @GetMapping("/flight/book/{id}")
+    @GetMapping("/book/{id}")
     public ResponseEntity<BookingResponseDto> getBooking(@PathVariable Long id) {
         return ResponseEntity.ok(bookingService.getBookingById(id));
     }
