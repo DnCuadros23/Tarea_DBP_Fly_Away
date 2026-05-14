@@ -33,10 +33,13 @@ public class SecurityConfig {
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
-                    "/flights/create",
-                    "/users/register",
-                    "/auth/login",
-                    "/cleanup"
+                        "/flights/create",
+                        "/flights/search/**",
+                        "/flights/create-many",
+                        "/users/register",
+                        "/flights/book/**",
+                        "/auth/login",
+                        "/cleanup"
                 ).permitAll()
                 .anyRequest().authenticated()
             )

@@ -19,10 +19,10 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
 
     @Query("""
         SELECT f FROM Flight f
-        WHERE (:flightNumber IS NULL OR UPPER(f.flightNumber) LIKE UPPER(CONCAT('%', :flightNumber, '%')))
-        AND   (:airlineName  IS NULL OR UPPER(f.airlineName)  LIKE UPPER(CONCAT('%', :airlineName,  '%')))
-        AND   (:startDate    IS NULL OR f.departureTime >= :startDate)
-        AND   (:endDate      IS NULL OR f.departureTime <= :endDate)
+        WHERE (cast(:flightNumber as string) IS NULL OR UPPER(f.flightNumber) LIKE UPPER(CONCAT('%', cast(:flightNumber as string), '%')))
+        AND   (cast(:airlineName as string) IS NULL OR UPPER(f.airlineName)  LIKE UPPER(CONCAT('%', cast(:airlineName as string),  '%')))
+        AND   (cast(:startDate as timestamp) IS NULL OR f.departureTime >= :startDate)
+        AND   (cast(:endDate as timestamp) IS NULL OR f.departureTime <= :endDate)
         """)
     List<Flight> searchFlights(
             @Param("flightNumber") String flightNumber,

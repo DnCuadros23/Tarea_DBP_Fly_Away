@@ -20,9 +20,9 @@ public class FlightService {
     private final ModelMapper modelMapper;
 
     @Transactional
-    public FlightResponseDto createFlight(RequestFlightDto dto) {
+    public FlightResponseDto createFlight(FlightRequestDto dto) {
         // Validar que hora de salida < hora de llegada
-        if (!dto.getDepartureTime().isBefore(dto.getArrivalTime())) {
+        if (!dto.getEstDepartureTime().isBefore(dto.getEstArrivalTime())) {
             throw new BadRequestException("La hora de salida debe ser anterior a la hora de llegada");
         }
 
@@ -34,10 +34,10 @@ public class FlightService {
         Flight flight = Flight.builder()
                 .flightNumber(dto.getFlightNumber())
                 .airlineName(dto.getAirlineName())
-                .origin(dto.getOrigin())
-                .destination(dto.getDestination())
-                .departureTime(dto.getDepartureTime())
-                .arrivalTime(dto.getArrivalTime())
+                .origin(dto.getOrigin() != null ? dto.getOrigin() : "N/A")
+                .destination(dto.getDestination() != null ? dto.getDestination() : "N/A")
+                .departureTime(dto.getEstDepartureTime())
+                .arrivalTime(dto.getEstArrivalTime())
                 .availableSeats(dto.getAvailableSeats())
                 .build();
 

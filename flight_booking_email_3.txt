@@ -1,0 +1,13 @@
+========================================
+CONFIRMACION DE RESERVA - FLY AWAY TRAVEL
+========================================
+Booking ID   : 3
+Pasajero     : John Doe
+Vuelo        : AA448
+Aerolínea    : American Airlines
+Origen       : N/A
+Destino      : N/A
+Salida       : 2026-05-17T12:00:00
+Llegada      : 2026-05-17T19:00:00
+Fecha reserva: 2026-05-14T00:54:24.2274263
+========================================
