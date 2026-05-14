@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@RestController("/flights")
-@RequiredArgsConstructor
+@RestController
+@RequestMapping("/flights")
 public class FlightController {
 
     private final FlightService flightService;
+
+    public FlightController(FlightService flightService) {
+        this.flightService = flightService;
+    }
 
     // POST /flights/create (sin protección)
     @PostMapping("/create")

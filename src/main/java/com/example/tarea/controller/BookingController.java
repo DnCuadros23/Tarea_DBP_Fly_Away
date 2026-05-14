@@ -9,11 +9,15 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/flights")
-@RequiredArgsConstructor
+@RestController
+@RequestMapping("/bookings")
 public class BookingController {
 
     private final BookingService bookingService;
+
+    public BookingController(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
 
     // POST /flights/book (protegido)
     @PostMapping("/book")
